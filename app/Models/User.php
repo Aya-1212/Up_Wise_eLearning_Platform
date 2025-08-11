@@ -20,8 +20,34 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'image',
         'password',
     ];
+
+    public function messages(){
+       return $this->hasMany(Message::class);
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class,
+         'course_user')->withPivot('payment_method')->withTimestamps();
+    }
+
+    public function feedbacks(){
+        return $this->hasMany(Feedback::class);
+    }
+
+    public function quizAttempts(){
+        return $this->hasMany(QuizAttempt::class);
+    }
+
+    public function contents(){
+        return $this->
+        belongsToMany(Content::class,'content_user')
+        ->withPivot('is_finished')->withTimestamps();
+    }
 
     /**
      * The attributes that should be hidden for serialization.
