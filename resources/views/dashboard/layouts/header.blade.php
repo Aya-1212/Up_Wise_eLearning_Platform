@@ -7,13 +7,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('dashboard/favicon.ico') }}">
-    <title>Dashboard</title>
+    <title>Dashboard || @yield('title')</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard/css/simplebar.css') }}">
     <!-- Fonts CSS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
     <!-- Icons CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard/css/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/css/select2.css') }}">
@@ -29,6 +32,8 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard/css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{ asset('dashboard/css/app-dark.css') }}" id="darkTheme" disabled>
+    <link rel="stylesheet" href="{{  asset('dashboard/css/adminlte.min.css') }}">
+
 </head>
 
 <body class="vertical  light  ">

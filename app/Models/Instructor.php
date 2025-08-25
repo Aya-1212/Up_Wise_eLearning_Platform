@@ -13,11 +13,17 @@ class Instructor extends Model
         'name',
         'email',
         'image',
-        'specialty',
+        'specialty_id',
         'linkedin_url',
     ];
 
-    public function courses(){
-     return $this->hasMany(Course::class);
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    public function specialty()
+    {
+        return $this->belongsTo(Speciality::class);
     }
 }

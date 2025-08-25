@@ -12,29 +12,55 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>upwise_egypt@gmail.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{ $contact->address }}</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+02 {{ $contact->phone }}</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{ $contact->email }}</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i
+                        <a class="btn btn-outline-light btn-social" href="{{ $contact->x_url }}"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="{{ $contact->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="{{ $contact->youtube_url }}"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="{{ $contact->linkedin_url }}"><i
                                 class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 mx-auto">
-    <section class="py-4 bg-light text-center rounded shadow">
-        <div class="container">
-            <h3 class="mb-3">Start Your Learning Journey Today!</h3>
-            <p class="mb-3">Join thousands of learners and enhance your skills with our expert-led courses.</p>
-            <a href="{{ route('auth.register') }}" class="btn btn-primary btn-sm mx-1">Join Now</a>
-            <a href="{{ route('site.courses') }}" class="btn btn-outline-primary btn-sm mx-1">Explore Courses</a>
-        </div>
-    </section>
+                @guest
+                    <div class="col-lg-6 col-md-12 mx-auto">
+                        <section class="py-4 bg-light text-center rounded shadow">
+                            <div class="container">
+                                <h3 class="mb-3">Start Your Learning Journey Today!</h3>
+                                <p class="mb-3">Join thousands of learners and enhance your skills with our expert-led
+                                    courses.</p>
+                                <a href="{{ route('auth.register') }}" class="btn btn-primary btn-sm mx-1">Join Now</a>
+                                <a href="{{ route('site.courses') }}" class="btn btn-outline-primary btn-sm mx-1">Explore
+                                    Courses</a>
+                            </div>
+                        </section>
+                    </div>
+                @endguest
+                @auth
+                    <div class="col-lg-6 col-md-12 mx-auto">
+                        <section class="py-4 bg-light text-center rounded shadow">
+                 <div class="container">
+    <h3 class="mb-3">Welcome Back, {{ auth()->user()->name }}! 👋</h3>
+    <p class="mb-3" style="color: black;">Continue your learning journey and explore more courses tailored for you.</p>
+
+    <div class="d-flex flex-wrap justify-content-center">
+        <a href="" class="btn btn-primary btn-sm mx-1">My Profile</a>
+        <a href="" class="btn btn-outline-primary btn-sm mx-1">My Courses</a>
+
+        <form action="{{ route('auth.logout') }}" method="POST" class="mx-1">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger btn-sm" type="submit">Logout</button>
+        </form>
+    </div>
 </div>
 
+                        </section>
+                    </div>
 
+
+                @endauth
             </div>
         </div>
         <div class="container">

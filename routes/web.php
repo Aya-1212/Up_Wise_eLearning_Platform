@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Dashboard\Student\HomeController;
+// use App\Http\Controllers\Dashboard\Student\HomeController;
+use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('site.pages.home');
-})->name('site.home');
+Route::get('/', [HomeController::class, 'index'])->name('site.home');
 
 Route::get('/about-us', function () {
     return view('site.pages.about');
@@ -54,9 +53,15 @@ Route::get('/private-policy', function () {
 Route::get('/terms-and-conditions', function () {
     return view('site.pages.terms');
 })->name('site.terms');
-
+// Authentication Routes
+Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'submitLogin'])->name('auth.submit.login');
 
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'submitRegister'])->name('auth.submit.register');
+//
+// Route::get('/student-home', [HomeController::class, 'index']);
 
-Route::get('/student-home', [HomeController::class, 'index']);
+//
+require __DIR__.'/admin.php';
