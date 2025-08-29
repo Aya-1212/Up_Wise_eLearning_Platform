@@ -19,10 +19,15 @@ class InstructorController extends Controller
         return view('dashboard.admin.instructors.index', compact('instructors'));
     }
 
-    public function add()
+    public function show(Instructor $instructor)
+    {
+        return view('dashboard.admin.instructors.show', compact('instructor'));
+    }
+
+    public function create()
     {
         $specialities = Speciality::all();
-        return view('dashboard.admin.instructors.add', compact('specialities'));
+        return view('dashboard.admin.instructors.create', compact('specialities'));
     }
 
     public function store(AddInstructorRequest $request)
@@ -55,7 +60,7 @@ class InstructorController extends Controller
         $instructor->speciality_id = $data['speciality_id'];
         $instructor->linkedin_url = $data['linkedin_url'];
         if (isset($data['image'])) {
-            $this->deleteImage("/instructors/{$instructor->image}");
+            $this->deleteFile("/instructors/{$instructor->image}");
             $image_name = $this->uploadImage('instructors');
             $instructor->image = $image_name;
         }
@@ -67,7 +72,7 @@ class InstructorController extends Controller
 
     public function destroy(Instructor $instructor)
     {
-        $this->deleteImage("/instructors/{$instructor->image}");
+        $this->deleteFile("/instructors/{$instructor->image}");
         $instructor->delete();
         return back()->with('success', 'Instructor deleted successfully.');
     }

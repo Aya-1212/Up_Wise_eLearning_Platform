@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="nav-item w-100">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('courses.index') }}">
                     <i class="fa-solid fa-book-open-reader"></i>
                     <span class="ml-3 item-text">Courses</span>
                 </a>

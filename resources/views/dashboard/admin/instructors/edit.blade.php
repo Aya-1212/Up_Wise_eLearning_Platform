@@ -17,7 +17,7 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="">Instructor Name <span style="color: red;">*</span></label>
-                                <input type="text" name="name" value="{{ $instructor->name }}" class="form-control"
+                                <input type="text" name="name" value="{{ old('name',$instructor->name) }}" class="form-control"
                                     required>
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
@@ -25,7 +25,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">Instructor Email <span style="color: red;">*</span></label>
-                                <input type="text" name="email" value="{{ $instructor->email }}" class="form-control"
+                                <input type="text" name="email" value="{{ old('email',$instructor->email) }}" class="form-control"
                                     required>
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
@@ -36,12 +36,11 @@
                                 <select name="speciality_id" id="speciality_input" class="form-control">
                                     @foreach ($specialities as $speciality)
                                         <option value="{{ $speciality->id }}"
-                                            {{ $speciality->id == $instructor->speciality_id ? 'selected' : '' }}>
+                                            {{ old('speciality_id',$speciality->id) == $instructor->speciality_id ? 'selected' : '' }}>
                                             {{ $speciality->title }}
                                         </option>
                                     @endforeach
                                 </select>
-
                                 @error('speciality_id')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -49,7 +48,7 @@
                             <div class="mb-3">
                                 <label for="" class="form-label">Instructor LinkedIn <span
                                         style="color: red;">*</span></label>
-                                <input type="url" value="{{ $instructor->linkedin_url }}" name="linkedin_url"
+                                <input type="url" value="{{ old('linkedin_url', $instructor->linkedin_url) }}" name="linkedin_url"
                                     class="form-control" required>
                                 @error('linkedin_url')
                                     <span class="text-danger">{{ $message }}</span>

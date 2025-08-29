@@ -14,7 +14,17 @@ trait FileSystem
         return $image_name;
     }
 
-    public function deleteImage($path){
+    public function deleteFile($path)
+    {
         Storage::disk('custom_disk')->delete($path);
     }
+
+    public function uploadVideo(string $key, $parentDirectory)
+    {
+        $video_name = request()->file($key)->getClientOriginalName();
+        $video_name = time() . "_" . rand(100, 10000000) . "_" . $video_name;
+        request()->file($key)->storeAs($parentDirectory, $video_name, 'custom_disk');
+        return $video_name;
+    }
+
 }

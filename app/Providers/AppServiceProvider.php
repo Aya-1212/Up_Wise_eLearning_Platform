@@ -20,7 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        view()->composer('*', function ($view) {
+        // view()->composer('*', function ($view) {
+        //     $view->with('contact', Contact::first());
+        // });
+
+        view()->composer('site.layouts.footer', function ($view) {
             $view->with('contact', Contact::first());
         });
     }

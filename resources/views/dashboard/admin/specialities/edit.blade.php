@@ -16,7 +16,7 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="">Speciality Title <span style="color: red;">*</span></label>
-                                <input type="text" name="title" value="{{ $speciality->title }}" class="form-control"
+                                <input type="text" name="title" value="{{ old('title',$speciality->title) }}" class="form-control"
                                     required>
                                 @error('title')
                                     <span class="text-danger">{{ $message }}</span>

@@ -19,9 +19,15 @@ class CategoryController extends Controller
         return view('dashboard.admin.categories.index', compact('categories'));
     }
 
-    public function add()
+    public function show(Category $category)
     {
-        return view('dashboard.admin.categories.add');
+        return view('dashboard.admin.categories.show', compact('category'));
+
+    }
+
+    public function create()
+    {
+        return view('dashboard.admin.categories.create');
 
     }
 
@@ -48,7 +54,7 @@ class CategoryController extends Controller
         $data = $request->validated();
         $category->title = $data['title'];
         if (isset($data['image'])) {
-            $this->deleteImage("/categories/{$category->image}");
+            $this->deleteFile("categories/{$category->image}");
             $image_name = $this->uploadImage('categories');
             $category->image = $image_name;
         }
@@ -60,8 +66,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
 
-            $this->deleteImage("/categories/{$category->image}");
-            $category->delete();
-            return back()->with('success', 'Category Deleted Successfully');
+        $this->deleteFile("categories/{$category->image}");
+        $category->delete();
+        return back()->with('success', 'Category Deleted Successfully');
     }
 }

@@ -21,9 +21,9 @@ class SpecialityController extends Controller
         return view('dashboard.admin.specialities.show', compact('speciality'));
     }
 
-    public function add()
+    public function create()
     {
-        return view('dashboard.admin.specialities.add');
+        return view('dashboard.admin.specialities.create');
     }
 
     public function store(AddSpecialityRequest $request)

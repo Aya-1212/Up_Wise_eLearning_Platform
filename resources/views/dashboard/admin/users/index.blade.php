@@ -12,7 +12,7 @@
                         <div class="col-sm-12 text-center">
                             <h1 class="font-weight-bold" style="font-size: 2em; color: #007bff;">Users</h1>
                             <p class="font-weight-normal" style="font-size: 1.2em;">List of all Users</p>
-                            <a href="{{ route('users.add') }}" class="btn btn-primary position-absolute"
+                            <a href="{{ route('users.create') }}" class="btn btn-primary position-absolute"
                                 style="top: 0; right: 0;">Add
                                 User</a>
                         </div>
@@ -22,7 +22,7 @@
             <!-- users -->
             <section class="content">
                 <div class="container-fluid">
-                     <x-success-state />
+                    <x-success-state />
                     <x-error-state />
                     <div class="row">
                         <div class="col-md-12">
@@ -36,16 +36,16 @@
                                         <x-empty-state>{{ 'Users' }}</x-empty-state>
                                     @else
                                         <table class="table table-sm table-bordered border-primary "
-                                            style="width: 100%; border: 1px solid #ddd;">
+                                            style="table-layout: fixed; width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 10%; text-align: center; padding: 10px;">#</th>
-                                                    <th style="width: 20%; text-align: center; padding: 10px;">Name</th>
+                                                    <th style="width: 5%; text-align: center; padding: 10px;">#</th>
+                                                    <th style="width: 15%; text-align: center; padding: 10px;">Name</th>
                                                     <th style="width: 20%; text-align: center; padding: 10px;">Email</th>
                                                     <th style="width: 30%; text-align: center; padding: 10px;">Image</th>
-                                                    <th style="width: 30%; text-align: center; padding: 10px;">Phone</th>
+                                                    <th style="width: 20%; text-align: center; padding: 10px;">Phone</th>
                                                     @if (auth()->guard('admin')->user()->is_super)
-                                                        <th style="text-align: center; padding: 10px;">Delete</th>
+                                                        <th style="width: 8%;text-align: center; padding: 10px;">Delete</th>
                                                     @endif
                                                 </tr>
                                             </thead>
@@ -62,9 +62,9 @@
                                                             {{ $user->email }}
                                                         </td>
                                                         <td style="text-align: center;">
-                                                            <img src="{{ asset("uploads/users/{$user->image}" ) }}"
-                                                                alt="=user" class="img-fluid " height="100"
-                                                                width="120">
+                                                            <img src="{{ asset("uploads/users/{$user->image}") }}"
+                                                                alt="=user" class="img-fluid rounded"
+                                                                style="max-width: 300px; height: auto;">
                                                         </td>
                                                         <td style="text-align: center; word-wrap: break-word;">
                                                             {{ $user->phone ?? 'N/A' }}

@@ -25,9 +25,9 @@ class UserController extends Controller
 
     }
 
-    public function add()
+    public function create()
     {
-        return view('dashboard.admin.users.add');
+        return view('dashboard.admin.users.create');
 
     }
 
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if ($user->image != 'user.png') {
-            $this->deleteImage("/users/$user->image");
+            $this->deleteFile("/users/$user->image");
         }
         $user->delete();
         return to_route('users.index')->with('success', 'User deleted successfully.');

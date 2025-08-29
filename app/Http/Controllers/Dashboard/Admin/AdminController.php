@@ -19,9 +19,9 @@ class AdminController extends Controller
 
     }
 
-    public function add()
+    public function create()
     {
-        return view('dashboard.admin.admins.add');
+        return view('dashboard.admin.admins.create');
     }
 
     public function store(AddAdminRequest $request)
@@ -49,7 +49,7 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $image_name = $this->uploadImage('admins');
             if ($admin->image != 'user.png') {
-                $this->deleteImage("admins/{$admin->image}");
+                $this->deleteFile("admins/{$admin->image}");
             }
             $admin->image = $image_name;
         }
@@ -69,7 +69,7 @@ class AdminController extends Controller
             return back()->with('error', 'You cannot delete a super admin.');
         }
         if ($admin->image != 'user.png') {
-            $this->deleteImage("admins/{$admin->image}");
+            $this->deleteFile("admins/{$admin->image}");
         }
         $admin->delete();
         return to_route('admins.index')->with('success', 'Admin deleted successfully.');

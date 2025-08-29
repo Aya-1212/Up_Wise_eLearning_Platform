@@ -31,16 +31,16 @@
                                         <x-empty-state>{{ 'Messages' }}</x-empty-state>
                                     @else
                                         <table class="table table-sm table-bordered border-primary "
-                                            style="width: 100%; border: 1px solid #ddd;">
+                                            style="table-layout: fixed; width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th style="text-align: center; padding: 10px;">#</th>
-                                                    <th style="text-align: center; padding: 10px;">Name</th>
-                                                    <th style="text-align: center; padding: 10px;">Email</th>
-                                                    <th style="text-align: center; padding: 10px;">Subject</th>
-                                                    <th style="width: 50%; text-align: center; padding: 10px;">Message</th>
-                                                    <th style="text-align: center; padding: 10px;">User_Id</th>
-                                                    <th style="text-align: center; padding: 10px;">Delete</th>
+                                                    <th style="width: 5%;text-align: center;">#</th>
+                                                    <th style="width: 15%;text-align: center;">Name</th>
+                                                    <th style="width: 15%;text-align: center;">Email</th>
+                                                    <th style="width: 20%;text-align: center;">Subject</th>
+                                                    <th style="width: 28%;width: 50%; text-align: center;">Message</th>
+                                                    <th style="width: 8%;text-align: center;">User_Id</th>
+                                                    <th style="width: 9%;text-align: center;">Delete</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

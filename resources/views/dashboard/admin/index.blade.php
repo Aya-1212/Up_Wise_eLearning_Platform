@@ -55,7 +55,7 @@
                                 <div class="icon">
                                     <i class="fa-solid fa-book-open-reader"></i>
                                 </div>
-                                <a href="" class="small-box-footer">More info <i
+                                <a href="{{ route('courses.index') }}" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title', "Speciality {$speciality->id}")
+@section('title', "Category {$category->id}")
 
 @section('content')
     <main role="main" class="main-content">
@@ -10,16 +10,17 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-12 text-center">
-                            <h1 class="font-weight-bold" style="font-size: 2em; color: #007bff;"> Speciality:
-                                {{ $speciality->id }}</h1>
-                            <p class="font-weight-normal" style="font-size: 1.2em;">Detailed information about the speciality
+                            <h1 class="font-weight-bold" style="font-size: 2em; color: #007bff;">Category:
+                                {{ $category->title }}
+                            </h1>
+                            <p class="font-weight-normal" style="font-size: 1.2em;">Detailed information about the category
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Speciality Info -->
+            <!-- category Info -->
             <section class="content">
                 <div class="container-fluid">
 
@@ -28,12 +29,17 @@
                             <div class="card">
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Title:</strong> {{ $speciality->title }}</li>
+                                        <li class="list-group-item"><strong>Title:</strong> {{ $category->title }}</li>
+                                        <li class="list-group-item"><strong>Image:</strong> <img
+                                                src="{{ asset("uploads/categories/{$category->image}") }}"
+                                                alt="{{ $category->title }}" class="img-fluid rounded"
+                                                style="max-width: 300px; height: auto;">
+                                        </li>
                                         <li class="list-group-item"><strong>Created At:</strong>
-                                            {{ $speciality->created_at ? $speciality->created_at->format('Y-m-d H:i') : '---' }}
+                                            {{ $category->created_at ? $category->created_at->format('Y-m-d H:i') : '---' }}
                                         </li>
                                         <li class="list-group-item"><strong>Updated At:</strong>
-                                            {{ $speciality->updated_at ? $speciality->updated_at->format('Y-m-d H:i') : '---' }}
+                                            {{ $category->updated_at ? $category->updated_at->format('Y-m-d H:i') : '---' }}
                                         </li>
                                     </ul>
                                 </div>

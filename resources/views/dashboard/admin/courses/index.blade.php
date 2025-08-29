@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title', 'Instructors')
+@section('title', 'Courses')
 
 @section('content')
     <main role="main" class="main-content">
@@ -10,15 +10,15 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-12 text-center">
-                            <h1 class="font-weight-bold" style="font-size: 2em; color: #007bff;">Instructors</h1>
-                            <p class="font-weight-normal" style="font-size: 1.2em;">List of all Registered Instructors</p>
-                            <a href="{{ route('instructors.create') }}" class="btn btn-primary position-absolute"
-                                style="top: 0; right: 0;">Add Instructor</a>
+                            <h1 class="font-weight-bold" style="font-size: 2em; color: #007bff;">Courses</h1>
+                            <p class="font-weight-normal" style="font-size: 1.2em;">List of all Available Courses</p>
+                            <a href="{{ route('courses.create') }}" class="btn btn-primary position-absolute"
+                                style="top: 0; right: 0;">Add Course</a>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-            <!-- Instructors -->
+            <!-- courses -->
             <section class="content">
                 <div class="container-fluid">
                     <x-success-state />
@@ -27,61 +27,58 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body p-0">
-                                    @if (empty($instructors->items()))
-                                        <x-empty-state>{{ 'Instructors' }}</x-empty-state>
+                                    @if (empty($courses->items()))
+                                        <x-empty-state>{{ 'Courses' }}</x-empty-state>
                                     @else
                                         <div class="card-header">
-                                            <h3 class="card-title text-center" style="font-size: 1.5em;">Instructors</h3>
+                                            <h3 class="card-title text-center" style="font-size: 1.5em;">Courses</h3>
                                         </div>
                                         <!-- /.card-header -->
                                         <table class="table table-sm table-bordered border-primary "
-                                           style="table-layout: fixed; width: 100%;">
+                                            style="table-layout: fixed; width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th style="width: 5%; text-align: center; padding: 10px;">#</th>
-                                                    <th style="width: 15%; text-align: center; padding: 10px;">Name</th>
-                                                    <th style="width: 15%; text-align: center; padding: 10px;">Email</th>
-                                                    <th style="width: 9%; text-align: center; padding: 10px;">Speciality
+                                                    <th style="width: 15%; text-align: center; padding: 10px;">Title</th>
+                                                    <th style="width: 23%; text-align: center; padding: 10px;">Image</th>
+                                                    <th style="width: 25%; text-align: center; padding: 10px;">Description
                                                     </th>
-                                                    <th style="width: 30%; text-align: center; padding: 10px;">Image</th>
-                                                    <th style="width: 10%; text-align: center; padding: 10px;">LinkedIn</th>
-                                                    <th style="width: 8%; text-align: center; padding: 10px;">Edit</th>
+                                                    <th style="width: 9%; text-align: center; padding: 10px;">Price</th>
+                                                    <th style="width: 7%; text-align: center; padding: 10px;">Show</th>
+                                                    <th style="width: 6%; text-align: center; padding: 10px;">Edit</th>
                                                     <th style="width: 8%; text-align: center; padding: 10px;">Delete</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($instructors as $instructor)
+                                                @foreach ($courses as $course)
                                                     <tr>
                                                         <td style="text-align: center; word-wrap: break-word;">
                                                             {{ $loop->iteration }}
                                                         </td>
                                                         <td style="text-align: center; word-wrap: break-word;">
-                                                            {{ $instructor->name }}
+                                                            {{ $course->title }}
                                                         </td>
                                                         <td style="text-align: center; word-wrap: break-word;">
-                                                            {{ $instructor->email }}
+                                                            <img src="{{ asset("uploads/courses/{$course->image}") }}"
+                                                                alt="=course" class="img-fluid rounded"
+                                                                style="max-width: 200px; height: auto;">
                                                         </td>
                                                         <td style="text-align: center; word-wrap: break-word;">
-                                                            <a
-                                                                href="{{ route('specialities.show', $instructor->speciality_id) }}">
-                                                                {{ $instructor->speciality_id }}
-                                                            </a>
+                                                            {{ Str::limit($course->description, end: '...') }}
                                                         </td>
+                                                        <th style="text-align: center; word-wrap: break-word;">
+                                                            {{ number_format($course->price, 2) }} EGP</th>
+                                                        </th>
                                                         <td style="text-align: center;">
-                                                            <img src="{{ asset("uploads/instructors/{$instructor->image}") }}"
-                                                                alt="=instructor" class="img-fluid rounded"
-                                                                style="max-width: 300px; height: auto;">
-                                                        </td>
-                                                        <td style="text-align: center; word-wrap: break-word;">
-                                                            <a
-                                                                href="{{ $instructor->linkedin_url }}">{{ $instructor->linkedin_url }}</a>
+                                                            <a class="btn btn-primary"
+                                                                href="{{ route('courses.show', $course->id) }}">Show</a>
                                                         </td>
                                                         <td style="text-align: center;">
                                                             <a class="btn btn-success"
-                                                                href="{{ route('instructors.edit', $instructor) }}">Edit</a>
+                                                                href="{{ route('courses.edit', $course->id) }}">Edit</a>
                                                         </td>
                                                         <td style="text-align: center;">
-                                                            <form action="{{ route('instructors.destroy', $instructor) }}"
+                                                            <form action="{{ route('courses.destroy', $course->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -99,10 +96,10 @@
                             <!-- /.card -->
                         </div>
                     </div>
-                    {{ $instructors->links() }}
+                    {{ $courses->links() }}
                 </div>
             </section>
-            <!-- end instructors -->
+            <!-- end courses -->
         </div>
     </main>
 

@@ -15,18 +15,21 @@ class Content extends Model
         'course_id',
     ];
 
-    public function users(){
-        return 
-        $this->belongsToMany(User::class,'content_user')
-        ->withPivot('is_finished')->withTimestamps();
+    public function users()
+    {
+        return
+            $this->belongsToMany(User::class, 'content_user')
+                ->withPivot('is_finished')->withTimestamps();
     }
 
-    public function course(){
-     return $this->belongsTo(Course::class);
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 
-    public function lessons(){
-        return $this->belongsToMany(Lesson::class);
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
     }
 
 }
