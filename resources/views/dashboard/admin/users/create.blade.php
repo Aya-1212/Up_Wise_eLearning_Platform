@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title', 'Add User')
+@section('title', 'Create User')
 
 @section('content')
     <main role="main" class="main-content">
@@ -37,16 +37,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Image</label>
-                                <input type="file" name="image" class="form-control" onchange="previewImage(event)"
-                                    >
+                                <input type="file" name="image" class="form-control" onchange="previewImage(event)">
                                 @error('image')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Phone</label>
-                                <input type="tel" value="{{ old('phone') }}" name="phone" class="form-control"
-                                    >
+                                <input type="tel" value="{{ old('phone') }}" name="phone" class="form-control">
                                 @error('phone')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

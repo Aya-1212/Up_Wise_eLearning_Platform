@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title', 'Add Course')
+@section('title', 'Create Course')
 
 @section('content')
     <main role="main" class="main-content">
@@ -11,7 +11,8 @@
                         <h1 class="font-weight-bold text-center" style="font-size: 2em; color: #007bff;">
                             Add Course
                         </h1>
-                        <form class="form border p-3" method="POST" action="{{ route('courses.store') }}" enctype="multipart/form-data">
+                        <form class="form border p-3" method="POST" action="{{ route('courses.store') }}"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="" class="form-label">Course Title <span
@@ -25,7 +26,7 @@
                             <div class="mb-3">
                                 <label for="description_input" class="form-label">Description for The Course <span
                                         style="color: red;">*</span></label>
-                                <textarea name="description" id="description" class="form-control"  rows="6" cols="50"
+                                <textarea name="description" id="description" class="form-control" rows="6" cols="50"
                                     placeholder="Enter Course description here...">{{ old('description') }}</textarea>
                                 @error('description')
                                     <span class="text-danger">{{ $message }}</span>

@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title', 'Add Speciality')
+@section('title', 'Create Speciality')
 
 @section('content')
     <main role="main" class="main-content">

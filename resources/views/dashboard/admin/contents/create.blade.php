@@ -1,6 +1,6 @@
 @extends('dashboard.app')
 
-@section('title', 'Add Content')
+@section('title', 'Create Content')
 
 @section('content')
     <main role="main" class="main-content">
@@ -11,7 +11,7 @@
                         <h1 class="font-weight-bold text-center" style="font-size: 2em; color: #007bff;">
                             Add Content
                         </h1>
-                        <form class="form border p-3" method="POST" action="{{ route('contents.store',$course->id) }}">
+                        <form class="form border p-3" method="POST" action="{{ route('contents.store', $course->id) }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="" class="form-label">Content Title <span
